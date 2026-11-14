@@ -4,8 +4,12 @@ core/evaluate.py
 Measures localization accuracy against ground-truth positions.
 
 Run after generating samples + building the index:
-    python -m core.evaluate --gsd 0.3
+    python -m core.evaluate --gsd 1.0
 (--gsd = ground sample distance, metres per pixel of the satellite map)
+
+The default gsd of 1.0 m/px matches the IIT Roorkee map: it is 1498 x 704 px
+and covers roughly 1.45 km x 0.95 km (see GPS_BBOX in core/config.py).
+If you use a different map, set --gsd to that map's metres per pixel.
 """
 
 import os
@@ -67,7 +71,7 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--samples", default=str(C.QUERY_DIR))
     ap.add_argument("--models",  default=str(C.MODELS_DIR))
-    ap.add_argument("--gsd",     type=float, default=0.3, help="metres per pixel")
+    ap.add_argument("--gsd",     type=float, default=1.0, help="metres per pixel")
     ap.add_argument("--out",     default=str(C.RESULTS_DIR))
     a = ap.parse_args()
     run(a.samples, a.models, a.gsd, a.out)
