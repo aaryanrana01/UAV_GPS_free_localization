@@ -1,0 +1,35 @@
+[RetrievalBackbone] Loaded DINOv2 ViT-S/14 (dim=384)
+[DenseMatcher] Loaded EfficientLoFTR (detector-free)
+[Localizer] ready in 4.41s | retrieval=dinov2 | matcher=efficientloftr | tiles=1251
+  query_000.png    err=  40.9m  conf=0.869  27900ms
+  query_001.png    err=   6.7m  conf=0.932  27178ms
+  query_002.png    err=   2.2m  conf=0.916  27104ms
+  query_003.png    err=  15.1m  conf=0.939  27196ms
+  query_004.png    err=  32.4m  conf=0.909  27320ms
+  query_005.png    err=   9.5m  conf=0.933  27266ms
+  query_006.png    err=   4.5m  conf=0.952  27281ms
+  query_007.png    err=   7.8m  conf=0.955  27280ms
+  query_008.png    err=  14.6m  conf=0.910  27209ms
+  query_009.png    err=   9.8m  conf=0.931  27274ms
+  query_010.png    err=  18.1m  conf=0.955  27239ms
+  query_011.png    err=  33.1m  conf=0.890  27194ms
+  query_012.png    err=  16.2m  conf=0.943  27240ms
+  query_013.png    err=   5.0m  conf=0.956  27172ms
+  query_014.png    err=   5.4m  conf=0.936  27252ms
+  query_015.png    err=   1.0m  conf=0.960  27237ms
+  query_016.png    err=   5.8m  conf=0.951  27144ms
+  query_017.png    err=  11.2m  conf=0.944  27340ms
+  query_018.png    err= 314.4m  conf=0.466  27200ms
+  query_019.png    err=   6.1m  conf=0.935  27407ms
+
+====================================================
+  ACCURACY REPORT  (20 frames, gsd=1.0 m/px)
+====================================================
+  mean error      : 27.99 m
+  median error    : 9.67 m
+  90th percentile : 33.91 m
+  < 10 m          : 55%
+  < 25 m          : 80%
+  mean latency    : 27272 ms
+====================================================
+  per-frame CSV → /workspaces/UAV_GPS_free_localization/results/eval_results.csv
