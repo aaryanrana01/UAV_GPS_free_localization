@@ -63,8 +63,20 @@ class Localizer:
         self.transform, _ = make_transform(self.backbone.kind, self.tile)
         self.matcher = DenseMatcher(prefer=matcher) if do_refine else None
 
-        # full satellite map for refinement + visual output
-        self.sat_bgr = cv2.imread(self.meta["map_path"])
+        # full satellite map for refinement + visual output.
+        # The index remembers the map's full path on the computer that built it
+        # (e.g. D:\UAV5\...). If that path doesn't exist on this computer, use
+        # this project's own copy of the map, so the index works anywhere.
+        map_path = self.meta.get("map_path")
+        if not map_path or not os.path.exists(map_path):
+            from core import config as C
+            map_path = str(C.DEFAULT_MAP)
+        self.sat_bgr = cv2.imread(map_path)
+        if self.sat_bgr is None:
+            # fail loudly instead of silently skipping the matching step
+            raise FileNotFoundError(
+                f"Satellite map not found at {map_path}. "
+                f"Run: python quickstart.py --setup")
 
         print(f"[Localizer] ready in {time.time()-t0:.2f}s | "
               f"retrieval={self.backbone.kind} | "
